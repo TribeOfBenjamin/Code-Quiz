@@ -6,3 +6,11 @@
 .nav-link:hover {
     color: rgb(191, 136, 236);
 }
+.main {
+    text-align: center;
+}
+
+.content {
+    font-weight: 300;
+    font-size: 50px;
+}
