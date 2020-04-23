@@ -1,6 +1,6 @@
 
-var contentEl = document.querySelector(".content");
 var questionEl = document.querySelector(".question");
+var introductionEl = document.querySelector(".introduction");
 
 var i = 0
 
@@ -25,26 +25,50 @@ var choices = ["dog",
 function codeQuestion() {
 
     var makeQuestion = document.createElement("h2");
-
     makeQuestion.textContent = questions[i];
     questionEl.append(makeQuestion);
 
-    var makeBtn = document.createElement("button")
-    makeBtn.textContent = "Next";
-    questionEl.append(makeBtn);
+    var makeNxtBtn = document.createElement("button");
+    makeNxtBtn.textContent = "Next";
+    questionEl.append(makeNxtBtn);
+    makeNxtBtn.setAttribute("style", "background-color: rgb(152, 51, 235); color: white; margin: 10px");
 
-    makeBtn.setAttribute("style", "background-color: rgb(152, 51, 235); color: white; margin: 10px")
-
-    makeBtn.addEventListener("click", function() {
+    makeNxtBtn.addEventListener("click", function() {
     
-    questionEl.removeChild(makeQuestion);
-    questionEl.removeChild(makeBtn);
+        questionEl.removeChild(makeQuestion);
+        questionEl.removeChild(makeNxtBtn);
     
-    i++;
-    console.log(i);
-    codeQuestion();
-})
-
+        i++;
+        console.log(i);
+        
+        codeQuestion();
+    })
 }
 
-codeQuestion();
+function introStart() {
+
+    var makeIntroduction = document.createElement("h2");
+    makeIntroduction.textContent = "Hello";
+    introductionEl.append(makeIntroduction);
+
+    var makeStBtn = document.createElement("button");
+    makeStBtn.textContent = "Start";
+    introductionEl.append(makeStBtn);
+    makeStBtn.setAttribute("style", "background-color: rgb(152, 51, 235); color: white; margin: 10px");
+
+    makeStBtn.addEventListener("click", function() {
+
+        introductionEl.removeChild(makeIntroduction);
+        introductionEl.removeChild(makeStBtn);
+    
+        codeQuestion();
+    })
+}
+
+introStart();
+
+
+
+
+
+
