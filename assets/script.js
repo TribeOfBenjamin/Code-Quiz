@@ -1,50 +1,50 @@
 
 var contentEl = document.querySelector(".content");
+var questionEl = document.querySelector(".question");
 
-function introPage() {
+var i = 0
 
-var words = ["Code Quiz", "Hello there!", "This is a test..."];
+//Question Array
+var questions = ["What is a noun?",
+                "What is a pronoun?",
+                "What is a verb?"]
 
-for (var i = 0; i < 3; i++) {
-    var makeDiv = document.createElement("div");
+//Choice Array
+var choices = ["dog",
+                "cat",
+                "duck",
+                "horse",
+                "apple",
+                "orange",
+                "blue",
+                "fish"]
 
-    makeDiv.textContent = words[i];
-    contentEl.append(makeDiv);
-}
 
-var makeBtn = document.createElement("button")
+//Function which displays question, choices, and button for next
 
-makeBtn.textContent = "Start";
+function codeQuestion() {
 
-contentEl.append(makeBtn);
+    var makeQuestion = document.createElement("h2");
 
-makeBtn.setAttribute("style", "background-color: rgb(152, 51, 235); color: white; margin: 10px")
+    makeQuestion.textContent = questions[i];
+    questionEl.append(makeQuestion);
 
-makeBtn.addEventListener("click", Q1);
-
-}
-
-function Q1() {
-
-    introPage === null;
-
-    var words = ["This is the first question", "What color is my shirt?", "Uh oh!"];
-    
-    for (var i = 0; i < 3; i++) {
-        var makeDiv = document.createElement("div");
-    
-        makeDiv.textContent = words[i];
-        contentEl.append(makeDiv);
-    }
-    
     var makeBtn = document.createElement("button")
-    
     makeBtn.textContent = "Next";
-    
-    contentEl.append(makeBtn);
-    
-    makeBtn.setAttribute("style", "background-color: rgb(152, 51, 235); color: white; margin: 10px")
-    
-    }
+    questionEl.append(makeBtn);
 
-introPage();
+    makeBtn.setAttribute("style", "background-color: rgb(152, 51, 235); color: white; margin: 10px")
+
+    makeBtn.addEventListener("click", function() {
+    
+    questionEl.removeChild(makeQuestion);
+    questionEl.removeChild(makeBtn);
+    
+    i++;
+    console.log(i);
+    codeQuestion();
+})
+
+}
+
+codeQuestion();
