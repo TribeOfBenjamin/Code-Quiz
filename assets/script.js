@@ -1,6 +1,7 @@
 
 var questionEl = document.querySelector(".question");
 var introductionEl = document.querySelector(".introduction");
+var timerEl = document.querySelector(".timer");
 
 var i = 0
 
@@ -45,6 +46,22 @@ function codeQuestion() {
     })
 }
 
+function timer() {
+
+    var countdown = 60;
+  
+    var timeInterval = setInterval(function() {
+  
+        countdown--;
+        timerEl.textContent = " " + countdown;
+  
+        if (countdown === 0) {
+          timerEl.textContent = "";
+          clearInterval(timeInterval);
+        }
+    }, 1000);
+  }
+
 function introStart() {
 
     var makeIntroduction = document.createElement("h2");
@@ -62,6 +79,7 @@ function introStart() {
         introductionEl.removeChild(makeStBtn);
     
         codeQuestion();
+        timer();
     })
 }
 
