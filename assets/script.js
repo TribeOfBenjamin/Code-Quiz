@@ -38,28 +38,32 @@ function codeQuestion() {
         var makeChoice1 = document.createElement("p");
         makeChoice1.textContent = choices[u];
         choice1El.append(makeChoice1);
+        choice1El.setAttribute("data-choice", choices[u]);
         // 2nd Choice displayed
         var makeChoice2 = document.createElement("p");
         makeChoice2.textContent = choices[u + 1];
         choice2El.append(makeChoice2);
+        choice2El.setAttribute("data-choice", choices[u + 1]);
         // 3rd Choice displayed
         var makeChoice3 = document.createElement("p");
         makeChoice3.textContent = choices[u + 2];
         choice3El.append(makeChoice3);
+        choice3El.setAttribute("data-choice", choices[u + 2]);
         // 4th Choice displayed
         var makeChoice4 = document.createElement("p");
         makeChoice4.textContent = choices[u + 3];
         choice4El.append(makeChoice4);
+        choice4El.setAttribute("data-choice", choices[u + 3]);
         // Event Listeners on all choices listening for correct/wrong answers
-        makeChoice1.addEventListener("click", function(event) {
-            var userChoice = event.target;
+        //makeChoice1.addEventListener("click", function(event) {
+         //   var userChoice = event.target;
 
-            if (userChoice.matches("p")) {
-                var answerValue = userChoice.getAttribute("data-answer");
+         //   if (userChoice.matches("p")) {
+          //      var answerValue = userChoice.getAttribute("data-answer");
 
-                if (answerValue === "correct") {}
-            }
-        })
+         //       if (answerValue === "correct") {}
+        //    }
+      //  })
     // Next Button displayed
     var makeNxtBtn = document.createElement("button");
     makeNxtBtn.textContent = "Next";
