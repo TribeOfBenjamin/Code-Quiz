@@ -1,5 +1,6 @@
 
 var questionEl = document.querySelector(".question");
+var choicesAllEl = document.querySelector(".choicesAll");
 var choice1El = document.querySelector(".choice1");
 var choice2El = document.querySelector(".choice2");
 var choice3El = document.querySelector(".choice3");
@@ -10,60 +11,60 @@ var timerEl = document.querySelector(".timer");
 
 var countdown = 60;
 
-var i = 0;
-var u = 0;
+var i = 0; // Iterates through the Question array
+var u = 0; // Iterates through the Choice array
+var y = 0; // Iterates through the Correct Answer array
 
-// Question array
+// Question array, using i var
 var questions = ["What is a noun?",
                 "What is a pronoun?",
                 "What is a verb?"];
 
-// Choice array
+// Choice array, using u var
 var choices = ["1. dog", "2. cat", "3. duck", "4. horse",
                 "1. apple", "2. orange", "3. blue", "4. fish",
                 "1. boom", "2. clap", "3. zing", "4. slap"];
 
-// Correct Answer array
+// Correct Answer array, using y var
 var correctAnswer = ["1. dog",
                         "4. fish",
                         "3. zing"];
 
 // Question Function which displays question, choices, and button for next
+
+// If it becomes a problem to just append the divs already there and not create my own tags in JS,
+// try creating and appending the tags and then doing the same with the data attributes; the probl-
+// em might have been that the data attributes need to be attached to the specific element and not
+// its parent.
 function codeQuestion() {
     // Question displayed
     var makeQuestion = document.createElement("h2");
     makeQuestion.textContent = questions[i];
     questionEl.append(makeQuestion);
         // 1st Choice displayed
-        var makeChoice1 = document.createElement("p");
-        makeChoice1.textContent = choices[u];
-        choice1El.append(makeChoice1);
         choice1El.setAttribute("data-choice", choices[u]);
+        choice1El.append(choices[u]);
         // 2nd Choice displayed
-        var makeChoice2 = document.createElement("p");
-        makeChoice2.textContent = choices[u + 1];
-        choice2El.append(makeChoice2);
         choice2El.setAttribute("data-choice", choices[u + 1]);
+        choice2El.append(choices[u + 1]);
         // 3rd Choice displayed
-        var makeChoice3 = document.createElement("p");
-        makeChoice3.textContent = choices[u + 2];
-        choice3El.append(makeChoice3);
         choice3El.setAttribute("data-choice", choices[u + 2]);
+        choice3El.append(choices[u + 2]);
         // 4th Choice displayed
-        var makeChoice4 = document.createElement("p");
-        makeChoice4.textContent = choices[u + 3];
-        choice4El.append(makeChoice4);
         choice4El.setAttribute("data-choice", choices[u + 3]);
+        choice4El.append(choices[u + 3]);
         // Event Listeners on all choices listening for correct/wrong answers
-        //makeChoice1.addEventListener("click", function(event) {
-         //   var userChoice = event.target;
+        choicesAllEl.addEventListener("click", function(event) {
+            var userChoice = event.target;
 
-         //   if (userChoice.matches("p")) {
-          //      var answerValue = userChoice.getAttribute("data-answer");
+            if (userChoice.matches("div")) {
+                var answerVerity = userChoice.getAttribute("data-choice");
 
-         //       if (answerValue === "correct") {}
-        //    }
-      //  })
+                if (answerVerity === correctAnswer[y]) {
+                    alert("test!!! YUP!");
+                }
+            }
+        })
     // Next Button displayed
     var makeNxtBtn = document.createElement("button");
     makeNxtBtn.textContent = "Next";
@@ -73,14 +74,15 @@ function codeQuestion() {
     makeNxtBtn.addEventListener("click", function() {
     
         questionEl.removeChild(makeQuestion);
-        choice1El.removeChild(makeChoice1);
-        choice2El.removeChild(makeChoice2);
-        choice3El.removeChild(makeChoice3);
-        choice4El.removeChild(makeChoice4);
+        choice1El.textContent = "";
+        choice2El.textContent = "";
+        choice3El.textContent = "";
+        choice4El.textContent = "";
         buttonEl.removeChild(makeNxtBtn);
     
         i++;
         u = u + 4;
+        y++;
         console.log(i);
         
         if (i < questions.length) {
