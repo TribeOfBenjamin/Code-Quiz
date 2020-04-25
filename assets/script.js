@@ -8,6 +8,7 @@ var choice4El = document.querySelector(".choice4");
 var buttonEl = document.querySelector(".button");
 var introductionEl = document.querySelector(".introduction");
 var timerEl = document.querySelector(".timer");
+var submitScoreEl = document.querySelector(".submitScore");
 
 var countdown = 60;
 
@@ -59,7 +60,7 @@ function codeQuestion() {
 
             if (userChoice.matches("div")) {
                 var answerVerity = userChoice.getAttribute("data-choice");
-
+                // Changes text color depending on verity
                 if (answerVerity === correctAnswer[y]) {
                     userChoice.setAttribute("style", "color: green");
                 } else {
@@ -73,7 +74,7 @@ function codeQuestion() {
     makeNxtBtn.textContent = "Next";
     buttonEl.append(makeNxtBtn);
     makeNxtBtn.setAttribute("style", "background-color: rgb(152, 51, 235); color: white; margin: 10px");
-    // Function which removes the current question and button
+    // Function which removes the current question, choices, text colors, and button. Also iterates vars.
     makeNxtBtn.addEventListener("click", function() {
     
         questionEl.removeChild(makeQuestion);
@@ -91,12 +92,24 @@ function codeQuestion() {
         i++;
         u = u + 4;
         y++;
-        console.log(i);
         
         if (i < questions.length) {
             codeQuestion();
+        } else if (i = questions.length) {
+            scorePage();
         }
     })
+}
+// Score Page
+function scorePage() {
+
+    var makeFinishDisplay = document.createElement("h2");
+    makeFinishDisplay.textContent = "Finished!";
+    questionEl.append(makeFinishDisplay);
+
+    submitScoreEl.setAttribute("style", "display: block");
+
+
 }
 // Timer Function 
 function timer() {

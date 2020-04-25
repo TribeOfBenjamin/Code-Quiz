@@ -14,3 +14,7 @@
     font-weight: 300;
     font-size: 50px;
 }
+
+.submitScore {
+    display: none;
+}
