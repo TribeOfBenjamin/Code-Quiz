@@ -64,6 +64,7 @@ function codeQuestion() {
                     userChoice.setAttribute("style", "color: green");
                 } else {
                     userChoice.setAttribute("style", "color: red");
+                    countdown = countdown - 5;
                 }
             }
         })
