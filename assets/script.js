@@ -119,9 +119,16 @@ function timer() {
         countdown--;
         timerEl.textContent = " " + countdown;
   
-        if (countdown === 0) {
+        if (countdown <= 0) {
           timerEl.textContent = "";
+
+          questionEl.setAttribute("style", "display: none");
+          choicesAllEl.setAttribute("style", "display: none");
+          buttonEl.setAttribute("style", "display: none");
+
           clearInterval(timeInterval);
+
+          scorePage();
         }
     }, 1000);
   }
