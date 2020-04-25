@@ -61,7 +61,9 @@ function codeQuestion() {
                 var answerVerity = userChoice.getAttribute("data-choice");
 
                 if (answerVerity === correctAnswer[y]) {
-                    alert("test!!! YUP!");
+                    userChoice.setAttribute("style", "color: green");
+                } else {
+                    userChoice.setAttribute("style", "color: red");
                 }
             }
         })
@@ -79,6 +81,11 @@ function codeQuestion() {
         choice3El.textContent = "";
         choice4El.textContent = "";
         buttonEl.removeChild(makeNxtBtn);
+
+        choice1El.removeAttribute("style");
+        choice2El.removeAttribute("style");
+        choice3El.removeAttribute("style");
+        choice4El.removeAttribute("style");
     
         i++;
         u = u + 4;
