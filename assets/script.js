@@ -9,6 +9,8 @@ var buttonEl = document.querySelector(".button");
 var introductionEl = document.querySelector(".introduction");
 var timerEl = document.querySelector(".timer");
 var submitScoreEl = document.querySelector(".submitScore");
+var initialsEl = document.querySelector("#initials");
+var highScoresEl = document.querySelector(".highScores");
 
 var countdown = 60;
 
@@ -30,6 +32,9 @@ var choices = ["1. dog", "2. cat", "3. duck", "4. horse",
 var correctAnswer = ["1. dog",
                         "4. fish",
                         "3. zing"];
+
+
+
 
 // Question Function which displays question, choices, and button for next
 
@@ -95,22 +100,41 @@ function codeQuestion() {
         
         if (i < questions.length) {
             codeQuestion();
-        } else if (i = questions.length) {
-            scorePage();
+        } else if (i === questions.length) {
+            scorePage(countdown);
         }
     })
 }
 // Score Page
-function scorePage() {
+function scorePage(c) {
 
     var makeFinishDisplay = document.createElement("h2");
-    makeFinishDisplay.textContent = "Finished!";
+    makeFinishDisplay.textContent = "Finished! Your score: " + c;
     questionEl.append(makeFinishDisplay);
 
     submitScoreEl.setAttribute("style", "display: block");
 
-
+    submitScoreEl.addEventListener("submit", function() {
+        localStorage.setItem("initials", initialsEl.value);
+    })
 }
+
+// High Scores Page
+function highScoresPage() {
+
+    var makeHighScoreDisplay = document.createElement("h2");
+    makeHighScoreDisplay.textContent = "High Scores";
+    highScoresEl.append(makeHighScoreDisplay);
+
+    var highScore = localStorage.getItem("initials");
+
+  if (highScore === null) {
+    return;
+  }
+
+  highScoresEl.textContent = highScore;
+}
+
 // Timer Function 
 function timer() {
 
