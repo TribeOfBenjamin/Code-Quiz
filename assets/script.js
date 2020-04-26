@@ -143,12 +143,6 @@ function highScoresPage() {
     var makeHighScoreDisplay = document.createElement("h2");
     makeHighScoreDisplay.textContent = "High Scores";
     highScoresEl.append(makeHighScoreDisplay);
-
-    //localStorage.getItem("initials").push
-
-    //var makeScore = document.createElement("li");
-    //makeScore.textContent = highScore;
-    //highScoresListEl.firstElement.append(makeScore);
 }
 
 // Timer Function 
@@ -183,6 +177,16 @@ function introStart() {
     makeStBtn.textContent = "Start";
     introductionEl.append(makeStBtn);
     makeStBtn.setAttribute("style", "background-color: rgb(152, 51, 235); color: white; margin: 10px");
+
+
+    viewScoresEl.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        introductionEl.removeChild(makeIntroduction);
+        introductionEl.removeChild(makeStBtn);
+
+        highScoresPage();
+    });
 
     makeStBtn.addEventListener("click", function(event) {
         event.preventDefault();
