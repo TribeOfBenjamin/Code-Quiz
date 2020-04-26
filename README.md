@@ -10,3 +10,5 @@ An alert is also triggered if the timer gets to zero, either by getting too many
 
 ## Images
 ![#1](images/Code-Quiz_1.png)
+![#2](images/Code-Quiz_2.png)
+![#3](images/Code-Quiz_3.png)
