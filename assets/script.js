@@ -75,7 +75,7 @@ function codeQuestion() {
 
             if (userChoice.matches("div")) {
                 var answerVerity = userChoice.getAttribute("data-choice");
-                // Changes text color depending on verity
+                // Changes text color depending on verity AND subtracts from timer if wrong
                 if (answerVerity === correctAnswer[y]) {
                     userChoice.setAttribute("style", "color: green");
                 } else {
@@ -128,7 +128,7 @@ function resultPage(c) {
     submitScoreEl.addEventListener("submit", function(event) {
         event.preventDefault();
 
-        localStorage.setItem("initials", initialsEl.value);
+        localStorage.setItem("initials", initialsEl.value + " - " + c);
         prevScores.push(initialsEl.value + " - " + c);
 
         questionEl.removeChild(makeFinishDisplay);
@@ -145,6 +145,15 @@ function viewScoresPage() {
     prevScoresEl.append(makePrevScoreDisplay);
 
     //Gets initials and scores from local storage and posts to the previous scores page
+    prevScoresEl.append(localStorage.getItem("initials"));
+
+    prevScoresEl.append(document.createElement("hr"));
+
+    var makeBkBtn = document.createElement("button");
+    makeBkBtn.textContent = "Back";
+    prevScoresEl.append(makeBkBtn);
+    makeBkBtn.setAttribute("style", "background-color: rgb(152, 51, 235); color: white; margin: 10px;");
+
 }
 
 // Timer Function 
