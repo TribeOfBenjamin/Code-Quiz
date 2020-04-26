@@ -9,4 +9,4 @@ An alert is also triggered if the timer gets to zero, either by getting too many
 [Here is the link]() to the deployed site.
 
 ## Images
-![#1](images/Code-Quiz_1)
+![#1](images/Code-Quiz_1.png)
