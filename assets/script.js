@@ -8,9 +8,11 @@ var choice4El = document.querySelector(".choice4");
 var buttonEl = document.querySelector(".button");
 var introductionEl = document.querySelector(".introduction");
 var timerEl = document.querySelector(".timer");
+var viewScoresEl = document.querySelector(".viewScores");
 var submitScoreEl = document.querySelector(".submitScore");
 var initialsEl = document.querySelector("#initials");
 var highScoresEl = document.querySelector(".highScores");
+var highScoresListEl = document.querySelector("#highScoresList");
 
 var countdown = 60;
 
@@ -19,19 +21,25 @@ var u = 0; // Iterates through the Choice array
 var y = 0; // Iterates through the Correct Answer array
 
 // Question array, using i var
-var questions = ["What is a noun?",
+var questions = [
+                "What is a noun?",
                 "What is a pronoun?",
                 "What is a verb?"];
 
 // Choice array, using u var
-var choices = ["1. dog", "2. cat", "3. duck", "4. horse",
+var choices = [
+                "1. dog", "2. cat", "3. duck", "4. horse",
                 "1. apple", "2. orange", "3. blue", "4. fish",
                 "1. boom", "2. clap", "3. zing", "4. slap"];
 
 // Correct Answer array, using y var
-var correctAnswer = ["1. dog",
-                        "4. fish",
-                        "3. zing"];
+var correctAnswer = [
+                    "1. dog",
+                    "4. fish",
+                    "3. zing"];
+
+// High Score array
+var highScores = [];
 
 
 
@@ -61,6 +69,8 @@ function codeQuestion() {
         choice4El.append(choices[u + 3]);
         // Event Listeners on all choices listening for correct/wrong answers
         choicesAllEl.addEventListener("click", function(event) {
+            event.preventDefault();
+
             var userChoice = event.target;
 
             if (userChoice.matches("div")) {
@@ -80,7 +90,8 @@ function codeQuestion() {
     buttonEl.append(makeNxtBtn);
     makeNxtBtn.setAttribute("style", "background-color: rgb(152, 51, 235); color: white; margin: 10px");
     // Function which removes the current question, choices, text colors, and button. Also iterates vars.
-    makeNxtBtn.addEventListener("click", function() {
+    makeNxtBtn.addEventListener("click", function(event) {
+        event.preventDefault();
     
         questionEl.removeChild(makeQuestion);
         choice1El.textContent = "";
@@ -114,8 +125,15 @@ function scorePage(c) {
 
     submitScoreEl.setAttribute("style", "display: block");
 
-    submitScoreEl.addEventListener("submit", function() {
+    submitScoreEl.addEventListener("submit", function(event) {
+        event.preventDefault();
+
         localStorage.setItem("initials", initialsEl.value);
+        highScores.push(initialsEl.value + " - " + c);
+
+        questionEl.removeChild(makeFinishDisplay);
+        submitScoreEl.setAttribute("style", "display: none");
+        highScoresPage();
     })
 }
 
@@ -126,13 +144,11 @@ function highScoresPage() {
     makeHighScoreDisplay.textContent = "High Scores";
     highScoresEl.append(makeHighScoreDisplay);
 
-    var highScore = localStorage.getItem("initials");
+    //localStorage.getItem("initials").push
 
-  if (highScore === null) {
-    return;
-  }
-
-  highScoresEl.textContent = highScore;
+    //var makeScore = document.createElement("li");
+    //makeScore.textContent = highScore;
+    //highScoresListEl.firstElement.append(makeScore);
 }
 
 // Timer Function 
@@ -168,7 +184,8 @@ function introStart() {
     introductionEl.append(makeStBtn);
     makeStBtn.setAttribute("style", "background-color: rgb(152, 51, 235); color: white; margin: 10px");
 
-    makeStBtn.addEventListener("click", function() {
+    makeStBtn.addEventListener("click", function(event) {
+        event.preventDefault();
 
         introductionEl.removeChild(makeIntroduction);
         introductionEl.removeChild(makeStBtn);
