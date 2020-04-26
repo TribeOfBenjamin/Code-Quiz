@@ -112,12 +112,12 @@ function codeQuestion() {
         if (i < questions.length) {
             codeQuestion();
         } else if (i === questions.length) {
-            scorePage(countdown);
+            resultPage(countdown);
         }
     })
 }
 // Score Page
-function scorePage(c) {
+function resultPage(c) {
 
     var makeFinishDisplay = document.createElement("h2");
     makeFinishDisplay.textContent = "Finished! Your score: " + c;
@@ -144,7 +144,7 @@ function viewScoresPage() {
     makePrevScoreDisplay.textContent = "High Scores";
     prevScoresEl.append(makePrevScoreDisplay);
 
-    //Gets initials and scores from local storage and posts to the high
+    //Gets initials and scores from local storage and posts to the previous scores page
 }
 
 // Timer Function 
@@ -164,7 +164,8 @@ function timer() {
 
           clearInterval(timeInterval);
 
-          scorePage();
+          alert("Looks like your score went below zero. Yikes! You should probably try harder next time.");
+          introStart();
         }
     }, 1000);
   }
