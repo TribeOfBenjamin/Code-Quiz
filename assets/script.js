@@ -11,8 +11,8 @@ var timerEl = document.querySelector(".timer");
 var viewScoresEl = document.querySelector(".viewScores");
 var submitScoreEl = document.querySelector(".submitScore");
 var initialsEl = document.querySelector("#initials");
-var highScoresEl = document.querySelector(".highScores");
-var highScoresListEl = document.querySelector("#highScoresList");
+var prevScoresEl = document.querySelector(".prevScores");
+var prevScoresListEl = document.querySelector("#prevScoresList");
 
 var countdown = 60;
 
@@ -38,8 +38,8 @@ var correctAnswer = [
                     "4. fish",
                     "3. zing"];
 
-// High Score array
-var highScores = [];
+// Previous Score array
+var prevScores = [];
 
 
 
@@ -129,20 +129,22 @@ function scorePage(c) {
         event.preventDefault();
 
         localStorage.setItem("initials", initialsEl.value);
-        highScores.push(initialsEl.value + " - " + c);
+        prevScores.push(initialsEl.value + " - " + c);
 
         questionEl.removeChild(makeFinishDisplay);
         submitScoreEl.setAttribute("style", "display: none");
-        highScoresPage();
+        viewScoresPage();
     })
 }
 
-// High Scores Page
-function highScoresPage() {
+// View Previous Scores Page
+function viewScoresPage() {
 
-    var makeHighScoreDisplay = document.createElement("h2");
-    makeHighScoreDisplay.textContent = "High Scores";
-    highScoresEl.append(makeHighScoreDisplay);
+    var makePrevScoreDisplay = document.createElement("h2");
+    makePrevScoreDisplay.textContent = "High Scores";
+    prevScoresEl.append(makePrevScoreDisplay);
+
+    //Gets initials and scores from local storage and posts to the high
 }
 
 // Timer Function 
@@ -185,7 +187,7 @@ function introStart() {
         introductionEl.removeChild(makeIntroduction);
         introductionEl.removeChild(makeStBtn);
 
-        highScoresPage();
+        viewScoresPage();
     });
 
     makeStBtn.addEventListener("click", function(event) {
