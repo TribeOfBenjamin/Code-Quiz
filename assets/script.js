@@ -14,7 +14,7 @@ var initialsEl = document.querySelector("#initials");
 var prevScoresEl = document.querySelector(".prevScores");
 var prevScoresListEl = document.querySelector("#prevScoresList");
 
-var countdown = 60;
+var countdown = 100;
 
 var i = 0; // Iterates through the Question array
 var u = 0; // Iterates through the Choice array
@@ -22,21 +22,27 @@ var y = 0; // Iterates through the Correct Answer array
 
 // Question array, using i var
 var questions = [
-                "What is a noun?",
-                "What is a pronoun?",
-                "What is a verb?"];
+    "CSS is an acronym for what?",
+    "HTML is an acronym for what?",
+    "DOM is an acronym for what?",
+    "What tag do you use to add pictures to HTML?",
+    "What tag do you use to add a large title to HTML?"];
 
 // Choice array, using u var
 var choices = [
-                "1. dog", "2. cat", "3. duck", "4. horse",
-                "1. apple", "2. orange", "3. blue", "4. fish",
-                "1. boom", "2. clap", "3. zing", "4. slap"];
+    "1. Cascading Style Sheets", "2. Cats Styling Sheiks", "3. Computer Style Shorthand", "4. Computers Sink Sand",
+    "1. Hyperlink Text Markup Language", "2. Hyper Tech Manual Language", "3. Height Torture Mangled Looneys", "4. Hypertext Markup Language",
+    "1. Direct Object Modeling", "2. Document Object Model", "3. Dominic Orientation Model", "4. Dangerous Order of Making",
+    "1. <img>", "2. <src>", "3. <a>", "4. <h2>",
+    "1. <a>", "2. <src>", "3. <h1>", "4. <img>"];
 
 // Correct Answer array, using y var
 var correctAnswer = [
-                    "1. dog",
-                    "4. fish",
-                    "3. zing"];
+    "1. Cascading Style Sheets",
+    "4. Hypertext Markup Language",
+    "2. Document Object Model",
+    "1. <img>",
+    "3. <h1>"];
 
 // Previous Score array
 var prevScores = [];
@@ -145,15 +151,29 @@ function viewScoresPage() {
     prevScoresEl.append(makePrevScoreDisplay);
 
     //Gets initials and scores from local storage and posts to the previous scores page
-    prevScoresEl.append(localStorage.getItem("initials"));
+    var makeScoreList = document.createElement("div");
+    makeScoreList.textContent = localStorage.getItem("initials");
+    prevScoresEl.append(makeScoreList);
 
-    prevScoresEl.append(document.createElement("hr"));
+    var createHr = document.createElement("hr");
+    prevScoresEl.append(createHr);
 
     var makeBkBtn = document.createElement("button");
     makeBkBtn.textContent = "Back";
     prevScoresEl.append(makeBkBtn);
     makeBkBtn.setAttribute("style", "background-color: rgb(152, 51, 235); color: white; margin: 10px;");
 
+    makeBkBtn.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        prevScoresEl.removeChild(makeScoreList);
+        prevScoresEl.removeChild(makePrevScoreDisplay);
+        prevScoresEl.removeChild(createHr);
+        prevScoresEl.removeChild(makeBkBtn);
+
+    
+        alert("Thanks for playing! Refresh the page to try again!");
+    })
 }
 
 // Timer Function 
@@ -173,8 +193,7 @@ function timer() {
 
           clearInterval(timeInterval);
 
-          alert("Looks like your score went below zero. Yikes! You should probably try harder next time.");
-          introStart();
+          alert("Looks like your score went below zero. Yikes! You should probably try harder next time. Refresh the page and try again.");
         }
     }, 1000);
   }
