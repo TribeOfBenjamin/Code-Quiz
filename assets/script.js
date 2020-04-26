@@ -201,8 +201,12 @@ function timer() {
 function introStart() {
 
     var makeIntroduction = document.createElement("h2");
-    makeIntroduction.textContent = "Ready to test your knowledge of coding? Then let's go!";
+    makeIntroduction.textContent = "Ready to test your knowledge of coding?";
     introductionEl.append(makeIntroduction);
+
+    var makeIntroductionP = document.createElement("p");
+    makeIntroductionP.textContent = "Answer the following questions by clicking on the correct answer. But be careful! A wrong answer will subtract 5 seconds from the clock. The more time you have at the end, the higher your score. God's speed!";
+    introductionEl.append(makeIntroductionP);
 
     var makeStBtn = document.createElement("button");
     makeStBtn.textContent = "Start";
@@ -223,6 +227,7 @@ function introStart() {
         event.preventDefault();
 
         introductionEl.removeChild(makeIntroduction);
+        introductionEl.removeChild(makeIntroductionP);
         introductionEl.removeChild(makeStBtn);
     
         codeQuestion();
