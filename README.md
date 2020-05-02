@@ -6,7 +6,7 @@ Once the quiz begins, a timer counts down from 100. For each question the user g
 An alert is also triggered if the timer gets to zero, either by getting too many questions wrong or by taking too long to complete the quiz.
 
 ## Deployed Site
-[Here is the link]() to the deployed site.
+[Here is the link](https://tribeofbenjamin.github.io/Code-Quiz/) to the deployed site.
 
 ## Images
 ![#1](images/Code-Quiz_1.png)
